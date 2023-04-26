@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# start the container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# connect to the container
+docker exec -it $(docker ps -q) bash
+
+# install Apache web server
+apt-get update && apt-get install -y apache2
+
+# start Apache web server
+service apache2 start
+
+# create an HTML file with "Hello Holberton"
+echo "Hello Holberton" > /var/www/html/index.html
+
+# exit the container
+exit
