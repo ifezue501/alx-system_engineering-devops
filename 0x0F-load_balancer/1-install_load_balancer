@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
-
 # Install HAProxy version 2.4 from the official PPA
 apt-get install -y software-properties-common
 add-apt-repository -y ppa:vbernat/haproxy-2.4
 apt-get update
-apt-get install -y haproxy=2.4.*
+apt-get install -y haproxy=2.4.\*
 
-# Enable HAProxy in /etc/default/haproxy
 echo "ENABLED=1" >> /etc/default/haproxy
-
-# Create a new HAProxy configuration file and backup the original
 mv /etc/haproxy/haproxy.cfg{,.original}
 touch /etc/haproxy/haproxy.cfg
 
-# Configure HAProxy to balance traffic to two web servers
-cat <<EOF > /etc/haproxy/haproxy.cfg
-global
+printf %s "global
     log 127.0.0.1 local0 notice
     maxconn 2000
     user haproxy
@@ -40,10 +34,8 @@ listen hbnb
     balance roundrobin
     option httpclose
     option forwardfor
-    server 20205-web-01 52.204.96.210 check
+    server 2020-web-01 52.204.96.210 check
     server 20205-web-02 34.203.38.171 check
-EOF
+" >> /etc/haproxy/haproxy.cfg
 
-# Start the HAProxy service and enable it to start on boot
-systemctl start haproxy
-systemctl enable haproxy
+service haproxy start
