@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Update the package lists and upgrade the packages
+apt-get update
+apt-get upgrade -y
+
+# Install Nginx
+apt-get install -y nginx
+
+# Create the website root directory and index file
+mkdir -p /var/www/html
+echo "Hello world" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Configure Nginx to add a custom HTTP header response
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    add_header X-Served-By \$hostname;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    location /redirect_me {
+        return 301 http://cuberule.com/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+}
+EOF
+
+# Restart Nginx
+systemctl restart nginx
