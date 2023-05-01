@@ -55,17 +55,17 @@ Your servers
 
 | Name | Username | IP | State |  |
 | --- | --- | --- | --- | --- |
-| 1733-web-01 | `ubuntu` | `3.235.21.36` | running |
+| 1733-web-01 | `ubuntu` | `52.204.96.210` | running |
 
 Actions Toggle Dropdown
 
  |
-| 1733-web-02 | `ubuntu` | `3.83.35.54` | running |
+| 1733-web-02 | `ubuntu` | `34.203.38.171` | running |
 
 Actions Toggle Dropdown
 
  |
-| 1733-lb-01 | `ubuntu` | `34.231.109.143` | running |
+| 1733-lb-01 | `ubuntu` | `107.23.104.35` | running |
 
 Actions Toggle Dropdown
 
