@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-
 # Install HAProxy
 apt-get update
 apt-get install -y haproxy
 
-# Configure HAProxy to send traffic to web-01 and web-02
+# Configures HAProxy to send traffic to web-01 and web-02
 echo "frontend http_front
     bind *:80
     mode http
