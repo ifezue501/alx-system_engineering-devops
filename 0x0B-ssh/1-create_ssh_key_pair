@@ -3,4 +3,4 @@
 if [ ! -d ~/.ssh ]; then
     mkdir ~/.ssh
 fi
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/ school -N betty
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/school -N betty
